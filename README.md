@@ -1,2 +1,2 @@
 # gaussian-blur
-POV-Ray include file for blurring pigments
+POV-Ray v3.7 include file for blurring pigments
