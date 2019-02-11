@@ -1,7 +1,7 @@
 // ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
 /*
 
-https://github.com/t-o-k/gaussian-blur
+https://github.com/t-o-k/POV-Ray-gaussian-blur
 
 Copyright (c) 2017 Tor Olav Kristensen, http://subcube.com
 
