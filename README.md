@@ -5,8 +5,6 @@ POV-Ray v3.7 include file for blurring pigments and functions in one, two or thr
 
 ![Blurred object pigment for mesh2](https://github.com/t-o-k/POV-Ray-gaussian-blur/blob/master/Blur_Object_Pigment_For_mesh2.png)
 
-![Blurred object pigment for text](https://github.com/t-o-k/POV-Ray-gaussian-blur/blob/master/Blur_Object_Pigment_For_text.png)
-
 ![Blurred object pigment from other object](https://github.com/t-o-k/POV-Ray-gaussian-blur/blob/master/Blur_Object_Pigment_From_Other_Object.png)
 
 ![Blurred object pigment](https://github.com/t-o-k/POV-Ray-gaussian-blur/blob/master/Blur_Hexagon_Pigment.png)
