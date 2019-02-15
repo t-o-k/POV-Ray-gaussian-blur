@@ -11,4 +11,6 @@ POV-Ray v3.7 include file for blurring pigments and functions in one, two or thr
 
 ![Blurred checker texture](https://github.com/t-o-k/POV-Ray-gaussian-blur/blob/master/Blur_Checker_Texture.png)
 
+![Blurred image region](https://github.com/t-o-k/POV-Ray-gaussian-blur/blob/master/Blur_Image_Region.png)
+
 ![Verification](https://github.com/t-o-k/POV-Ray-gaussian-blur/blob/master/Verify_Blur_XYZ.png)
