@@ -35,12 +35,14 @@ default {
 
 #declare HexagonPigment =
     pigment {
-        // hexagon color rgb < 14,  9,  48>/400 color rgb <251, 235, 138>/600*0 color rgb <253, 216, 96>/600
-        hexagon color rgb <4, 2, 12>/100 color rgb <0, 0, 0>/100 color rgb <42, 36, 16>/100
+        hexagon
+            color rgb < 4,  2, 12>/100
+            color rgb < 0,  0,  0>/100
+            color rgb <42, 36, 16>/100
     }
 
-declare N = 60;
 #declare StepSize = 0.02;
+#declare NoOfSteps = 60;
 
 #declare HexagonPigment1 =
     BlurPigmentDirX(
@@ -49,13 +51,13 @@ declare N = 60;
             rotate -60*y
         },
         StepSize,
-        N
+        NoOfSteps
     )
 #declare HexagonPigment2 =
     BlurPigmentDirX(
         HexagonPigment,
         StepSize,
-        N
+        NoOfSteps
     )
 #declare HexagonPigment3 =
     BlurPigmentDirX(
@@ -64,7 +66,7 @@ declare N = 60;
             rotate +60*y
         },
         StepSize,
-        N
+        NoOfSteps
     )
 
 plane {
@@ -85,8 +87,6 @@ plane {
 camera {
     location 4*<0, 1, -1>
     look_at <0, 0, 0>
-    right image_width/image_height*x
-    up y
     // angle 150
 }
 
