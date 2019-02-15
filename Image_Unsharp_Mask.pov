@@ -78,47 +78,20 @@ default {
 #declare Amount = 1.0;
 
 #declare UnsharpMaskPigment =
-    pigment {
-        average
-        pigment_map {
-            [
-                function {
-                    ClipFn((1 + Amount)*ImagePigmentFn(x, y, z).red - Amount*BlurredRdFn(x, y, z))
-                }
-                color_map {
-                    [ 0.0 red 0 ]
-                    [ 1.0 red 4 ]
-                }
-            ]
-            [
-                function {
-                    ClipFn((1 + Amount)*ImagePigmentFn(x, y, z).green - Amount*BlurredGnFn(x, y, z))
-                }
-                color_map {
-                    [ 0.0 green 0 ]
-                    [ 1.0 green 4 ]
-                }
-            ]
-            [
-                function {
-                    ClipFn((1 + Amount)*ImagePigmentFn(x, y, z).blue - Amount*BlurredBuFn(x, y, z))
-                }
-                color_map {
-                    [ 0.0 blue 0 ]
-                    [ 1.0 blue 4 ]
-                }
-            ]
-            [
-                function {
-                    ImagePigmentFn(x, y, z).transmit
-                }
-                color_map {
-                    [ 0.0 transmit 0 ]
-                    [ 1.0 transmit 4 ]
-                }
-            ]
+    FunctionsPigmentRGBT(
+        function {
+            ClipFn((1 + Amount)*ImagePigmentFn(x, y, z).red - Amount*BlurredRdFn(x, y, z))
+        },
+        function {
+            ClipFn((1 + Amount)*ImagePigmentFn(x, y, z).green - Amount*BlurredGnFn(x, y, z))
+        },
+        function {
+            ClipFn((1 + Amount)*ImagePigmentFn(x, y, z).blue - Amount*BlurredBuFn(x, y, z))
+        },
+        function {
+            ImagePigmentFn(x, y, z).transmit
         }
-    }
+    )
 
 box {
     <0, 0, 0>, <Width, Height, 1>
