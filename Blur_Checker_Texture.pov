@@ -32,9 +32,14 @@ global_settings {
     }
 
 #declare StepSize = 0.02;
-#declare N = 30;
+#declare NoOfSteps = 30;
 
-#declare BlurredCheckerPigmentFn = BlurPigmentDirZX_Function(CheckerPigment, StepSize, N)
+#declare BlurredCheckerPigmentFn =
+    BlurPigmentDirZX_Function(
+        CheckerPigment,
+        StepSize,
+        NoOfSteps
+    )
 
 torus {
     1.4, 0.5
@@ -71,8 +76,6 @@ light_source {
 camera {
     location 4*<0, 1.5, -2>
     look_at <0, 0, 0>
-    right image_width/image_height*x
-    up y
     angle 40
 }
 
