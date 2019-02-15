@@ -367,7 +367,9 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
 
 #macro Sigma(NoOfSteps)
 
-    ((NoOfSteps + 0.5)/6)
+    #local S = (NoOfSteps + 0.5)/6;
+
+    S
 
 #end // macro Sigma
 
@@ -447,7 +449,7 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
     #local StdDev = Sigma(NoOfSteps);
     #local G__Fn = GaussianFunction(StdDev);
     #local H = (NoOfSteps - 1)/2;
-    #local SumG = 0;
+    #local SumG = 1e-6;
     #for (I, 0, NoOfSteps-1)
         #local C = I - H;
         #local SumG = SumG + G__Fn(C);
@@ -475,7 +477,7 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
     #local StdDev = Sigma(NoOfSteps);
     #local GI__Fn = GaussianIntegralFunction(StdDev);
     #local H = (NoOfSteps - 1)/2;
-    #local SumG = 0;
+    #local SumG = 1e-6;
     #for (I, 0, NoOfSteps-1)
         #local C = I - H;
         #local SumG = SumG + GI__Fn(C - 0.5, C + 0.5);
@@ -533,21 +535,6 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
 #end // macro BlurDirXY_Function
 
 
-#macro BlurDirZX_Function(Fn, StepSize, NoOfSteps)
-
-    BlurDirX_Function(
-        BlurDirZ_Function(
-            Fn,
-            StepSize,
-            NoOfSteps
-        ),
-        StepSize,
-        NoOfSteps
-    )
-
-#end // macro BlurDirZX_Function
-
-
 #macro BlurDirYZ_Function(Fn, StepSize, NoOfSteps)
 
     BlurDirZ_Function(
@@ -561,6 +548,21 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
     )
 
 #end // macro BlurDirYZ_Function
+
+
+#macro BlurDirZX_Function(Fn, StepSize, NoOfSteps)
+
+    BlurDirX_Function(
+        BlurDirZ_Function(
+            Fn,
+            StepSize,
+            NoOfSteps
+        ),
+        StepSize,
+        NoOfSteps
+    )
+
+#end // macro BlurDirZX_Function
 
 
 #macro BlurDirXYZ_Function(Fn, StepSize, NoOfSteps)
@@ -592,7 +594,7 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
     #local H = (NoOfSteps - 1)/2;
     #local vDir = StepSize*vDirection;
 
-    #local SumG = 0;
+    #local SumG = 1e-6;
     #for (I, 0, NoOfSteps-1)
         #local C = I - H;
         #local SumG = SumG + G__Fn(C);
@@ -620,7 +622,7 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
     #local H = (NoOfSteps - 1)/2;
     #local vDir = StepSize*vDirection;
 
-    #local SumG = 0;
+    #local SumG = 1e-6;
     #for (I, 0, NoOfSteps-1)
         #local C = I - H;
         #local SumG = SumG + GI__Fn(C - 0.5, C + 0.5);
@@ -676,21 +678,6 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
 #end // macro BlurPigmentDirXY
 
 
-#macro BlurPigmentDirZX(Pigment, StepSize, NoOfSteps)
-
-    BlurPigmentDirX(
-        BlurPigmentDirZ(
-            Pigment,
-            StepSize,
-            NoOfSteps
-        ),
-        StepSize,
-        NoOfSteps
-    )
-
-#end // macro BlurPigmentDirZX
-
-
 #macro BlurPigmentDirYZ(Pigment, StepSize, NoOfSteps)
 
     BlurPigmentDirZ(
@@ -704,6 +691,21 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
     )
 
 #end // macro BlurPigmentDirYZ
+
+
+#macro BlurPigmentDirZX(Pigment, StepSize, NoOfSteps)
+
+    BlurPigmentDirX(
+        BlurPigmentDirZ(
+            Pigment,
+            StepSize,
+            NoOfSteps
+        ),
+        StepSize,
+        NoOfSteps
+    )
+
+#end // macro BlurPigmentDirZX
 
 
 #macro BlurPigmentDirXYZ(Pigment, StepSize, NoOfSteps)
