@@ -30,3 +30,11 @@ POV-Ray v3.7 include file for blurring pigments and functions in one, two or thr
 ### Verify blur XYZ
 [Source code](Verify_Blur_XYZ.pov)\
 ![Verify blur XYZ](Verify_Blur_XYZ.png)
+
+### Project homepage
+
+https://github.com/t-o-k/POV-Ray-gaussian-blur/
+
+### Author
+
+[Tor Olav Kristensen](http://subcube.com)
