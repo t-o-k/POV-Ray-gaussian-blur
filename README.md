@@ -1,5 +1,5 @@
 # POV-Ray-gaussian-blur
-POV-Ray v3.7 include file for blurring pigments and functions in one, two or three dimensions.
+[POV-Ray](http://www.povray.org) v3.7 include file for blurring pigments and functions in one, two or three dimensions.
 
 ## Images created with some of the examples:
 
