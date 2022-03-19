@@ -3,7 +3,7 @@
 
 https://github.com/t-o-k/POV-Ray-gaussian-blur
 
-Copyright (c) 2017 Tor Olav Kristensen, http://subcube.com
+Copyright (c) 2017-2022 Tor Olav Kristensen, http://subcube.com
 
 Use of this source code is governed by the GNU Lesser General Public License version 3,
 which can be found in the LICENSE file.
@@ -450,8 +450,8 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
     #local G__Fn = GaussianFunction(StdDev);
     #local H = (NoOfSteps - 1)/2;
     #local SumG = 1e-6;
-    #for (I, 0, NoOfSteps-1)
-        #local C = I - H;
+    #for (J, 0, NoOfSteps-1)
+        #local C = J - H;
         #local SumG = SumG + G__Fn(C);
     #end // for
     #local vDir = StepSize*vDirection;
@@ -461,8 +461,8 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
 
     function {
         0
-        #for (I, 0, NoOfSteps-1)
-            #local C = I - H;
+        #for (J, 0, NoOfSteps-1)
+            #local C = J - H;
             #local G = G__Fn(C)/SumG;
             +G*Fn(x + C*dX, y + C*dY, z + C*dZ)
         #end // for
@@ -478,8 +478,8 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
     #local GI__Fn = GaussianIntegralFunction(StdDev);
     #local H = (NoOfSteps - 1)/2;
     #local SumG = 1e-6;
-    #for (I, 0, NoOfSteps-1)
-        #local C = I - H;
+    #for (J, 0, NoOfSteps-1)
+        #local C = J - H;
         #local SumG = SumG + GI__Fn(C - 0.5, C + 0.5);
     #end // for
     #local vDir = StepSize*vDirection;
@@ -489,8 +489,8 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
 
     function {
         0
-        #for (I, 0, NoOfSteps-1)
-            #local C = I - H;
+        #for (J, 0, NoOfSteps-1)
+            #local C = J - H;
             #local G = GI__Fn(C - 0.5, C + 0.5)/SumG;
             +G*Fn(x + C*dX, y + C*dY, z + C*dZ)
         #end // for
@@ -595,16 +595,16 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
     #local vDir = StepSize*vDirection;
 
     #local SumG = 1e-6;
-    #for (I, 0, NoOfSteps-1)
-        #local C = I - H;
+    #for (J, 0, NoOfSteps-1)
+        #local C = J - H;
         #local SumG = SumG + G__Fn(C);
     #end // for
 
     pigment {
         average
         pigment_map {
-            #for (I, 0, NoOfSteps-1)
-                #local C = I - H;
+            #for (J, 0, NoOfSteps-1)
+                #local C = J - H;
                 #local G = G__Fn(C);
                 [ G/SumG Pigment translate C*vDir ]
             #end // for
@@ -623,16 +623,16 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
     #local vDir = StepSize*vDirection;
 
     #local SumG = 1e-6;
-    #for (I, 0, NoOfSteps-1)
-        #local C = I - H;
+    #for (J, 0, NoOfSteps-1)
+        #local C = J - H;
         #local SumG = SumG + GI__Fn(C - 0.5, C + 0.5);
     #end // for
 
     pigment {
         average
         pigment_map {
-            #for (I, 0, NoOfSteps-1)
-                #local C = I - H;
+            #for (J, 0, NoOfSteps-1)
+                #local C = J - H;
                 #local G = GI__Fn(C - 0.5, C + 0.5);
                 [ G/SumG Pigment translate C*vDir ]
             #end // for
