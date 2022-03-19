@@ -14,7 +14,7 @@ which can be found in the LICENSE file.
 #version 3.7;
 
 #include "colors.inc"
-#include "Gaussian_Blur.inc"
+#include "../Gaussian_Blur.inc"
 
 global_settings {
     assumed_gamma 1.0
@@ -46,20 +46,56 @@ default {
         scale <Width, Height, 1>
     }
 
-#declare StepSize = 1.0; // pixels
-#declare NoOfSteps = 19;
+#declare ImagePigmentFn = function { pigment { ImagePigment } };
 
-#declare BlurredImagePigment =
-    BlurPigmentDirXY(
-        ImagePigment,
+#declare StepSize = 1.0; // pixels
+#declare NoOfSteps = 5;
+
+#declare BlurredRdFn =
+    BlurDirXY_Function(
+        function { ImagePigmentFn(x, y, z).red },
         StepSize,
         NoOfSteps
+    )
+;
+#declare BlurredGnFn =
+    BlurDirXY_Function(
+        function { ImagePigmentFn(x, y, z).green },
+        StepSize,
+        NoOfSteps
+    )
+;
+#declare BlurredBuFn =
+    BlurDirXY_Function(
+        function { ImagePigmentFn(x, y, z).blue },
+        StepSize,
+        NoOfSteps
+    )
+;
+
+#declare ClipFn = function(s) { min(max(0, s), 1) };
+
+#declare Amount = 1.0;
+
+#declare UnsharpMaskPigment =
+    FunctionsPigmentRGBT(
+        function {
+            ClipFn((1 + Amount)*ImagePigmentFn(x, y, z).red - Amount*BlurredRdFn(x, y, z))
+        },
+        function {
+            ClipFn((1 + Amount)*ImagePigmentFn(x, y, z).green - Amount*BlurredGnFn(x, y, z))
+        },
+        function {
+            ClipFn((1 + Amount)*ImagePigmentFn(x, y, z).blue - Amount*BlurredBuFn(x, y, z))
+        },
+        function {
+            ImagePigmentFn(x, y, z).transmit
+        }
     )
 
 box {
     <0, 0, 0>, <Width, Height, 1>
-    pigment { BlurredImagePigment }
-    // pigment { ImagePigment }
+    pigment { UnsharpMaskPigment }
     scale <image_width/Width, image_height/Height, 1>
 }
 

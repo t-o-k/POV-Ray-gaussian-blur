@@ -15,7 +15,7 @@ which can be found in the LICENSE file.
 
 #include "colors.inc"
 #include "textures.inc"
-#include "Gaussian_Blur.inc"
+#include "../Gaussian_Blur.inc"
 
 global_settings {
     assumed_gamma 1.0
