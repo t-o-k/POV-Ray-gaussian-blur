@@ -29,6 +29,83 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
 
 #end // macro IntegrateFunction
 
+
+#macro Sigma(NoOfSteps)
+
+    #local S = (NoOfSteps + 0.5)/6;
+
+    S
+
+#end // macro Sigma
+
+
+#declare GaussianFn =
+    function(r, stddev) {
+        exp(-pow(r/stddev, 2)/2)/sqrt(2*pi)/stddev
+    }
+;
+
+
+#macro GaussianFunction(StdDev)
+
+    function(r) { GaussianFn(r, StdDev) }
+
+#end // macro GaussianFunction
+
+
+/*
+#macro IntegrateGaussianFunction(StdDev, NoOfSteps)
+
+    IntegrateFunction(GaussianFunction(StdDev), NoOfSteps)
+
+#end // macro IntegrateGaussianFunction
+*/
+
+
+#declare ErrorFn =
+    function(s) {
+        1 -
+        pow(
+            1.0000000000 + select(s, -s, s)*
+            (
+                0.0705230784 + select(s, -s, s)*
+                (
+                    0.0422820123 + select(s, -s, s)*
+                    (
+                        0.0092705272 + select(s, -s, s)*
+                        (
+                            0.0001520143 + select(s, -s, s)*
+                            (
+                                0.0002765672 + select(s, -s, s)*
+                                (
+                                    0.0000430638
+                                )
+                            )
+                        )
+                    )
+                )
+            ), -16
+        )
+    }
+;
+
+#declare GaussianIntegralFn =
+    function(r0, r1, stddev) {
+        0
+        +select(r0, +0.5, -0.5)*ErrorFn(r0/sqrt(2)/stddev)
+        +select(r1, -0.5, +0.5)*ErrorFn(r1/sqrt(2)/stddev)
+    }
+;
+
+
+#macro GaussianIntegralFunction(StdDev)
+
+    function(r0, r1) {
+        GaussianIntegralFn(r0, r1, StdDev)
+    }
+
+#end // macro GaussianIntegralFunction
+
 // ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
 
 #macro ObjectPigment(Object)
@@ -362,83 +439,6 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
     }
 
 #end // macro PigmentRGBFT
-
-// ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
-
-#macro Sigma(NoOfSteps)
-
-    #local S = (NoOfSteps + 0.5)/6;
-
-    S
-
-#end // macro Sigma
-
-
-#declare GaussianFn =
-    function(r, stddev) {
-        exp(-pow(r/stddev, 2)/2)/sqrt(2*pi)/stddev
-    }
-;
-
-
-#macro GaussianFunction(StdDev)
-
-    function(r) { GaussianFn(r, StdDev) }
-
-#end // macro GaussianFunction
-
-
-/*
-#macro IntegrateGaussianFunction(StdDev, NoOfSteps)
-
-    IntegrateFunction(GaussianFunction(StdDev), NoOfSteps)
-
-#end // macro IntegrateGaussianFunction
-*/
-
-
-#declare ErrorFn =
-    function(s) {
-        1 -
-        pow(
-            1.0000000000 + select(s, -s, s)*
-            (
-                0.0705230784 + select(s, -s, s)*
-                (
-                    0.0422820123 + select(s, -s, s)*
-                    (
-                        0.0092705272 + select(s, -s, s)*
-                        (
-                            0.0001520143 + select(s, -s, s)*
-                            (
-                                0.0002765672 + select(s, -s, s)*
-                                (
-                                    0.0000430638
-                                )
-                            )
-                        )
-                    )
-                )
-            ), -16
-        )
-    }
-;
-#declare GaussianIntegralFn =
-    function(r0, r1, stddev) {
-        0
-        +select(r0, +0.5, -0.5)*ErrorFn(r0/sqrt(2)/stddev)
-        +select(r1, -0.5, +0.5)*ErrorFn(r1/sqrt(2)/stddev)
-    }
-;
-
-
-#macro GaussianIntegralFunction(StdDev)
-
-    function(r0, r1) {
-        GaussianIntegralFn(r0, r1, StdDev)
-    }
-
-#end // macro GaussianIntegralFunction
 
 // ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
 
@@ -964,4 +964,3 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
 #end // macro BlurObjectPigmentDirXYZ_Function
 
 // ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
-
