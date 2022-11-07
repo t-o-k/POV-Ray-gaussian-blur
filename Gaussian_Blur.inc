@@ -21,9 +21,9 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
 
 // ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
 
-#macro ClipFunction(Minvalue, MaxValue)
+#macro ClipFunction(MinValue, MaxValue)
 
-    function(s) { min(max(Minvalue, s), MaxValue) }
+    function(s) { min(max(MinValue, s), MaxValue) }
 
 #end // macro ClipFunction
 
