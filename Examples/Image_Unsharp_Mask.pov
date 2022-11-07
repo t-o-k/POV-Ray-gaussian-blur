@@ -3,7 +3,7 @@
 
 https://github.com/t-o-k/POV-Ray-gaussian-blur
 
-Copyright (c) 2017 Tor Olav Kristensen, http://subcube.com
+Copyright (c) 2017, 2022 Tor Olav Kristensen, http://subcube.com
 
 Use of this source code is governed by the GNU Lesser General Public License version 3,
 which can be found in the LICENSE file.
@@ -72,8 +72,6 @@ default {
         NoOfSteps
     )
 ;
-
-#declare ClipFn = function(s) { min(max(0, s), 1) };
 
 #declare Amount = 1.0;
 
