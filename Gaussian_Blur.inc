@@ -21,6 +21,13 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
 
 // ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
 
+#macro ClipFunction(Minvalue, MaxValue)
+
+    function(s) { min(max(Minvalue, s), MaxValue) }
+
+#end // macro ClipFunction
+
+
 #macro IntegrateFunction(Fn, N)
 
     function(s0, s1) {
@@ -129,27 +136,30 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
 
 // ===== 1 ======= 2 ======= 3 ======= 4 ======= 5 ======= 6 ======= 7 ======= 8 ======= 9 ======= 10
 
+#declare ClipFn = ClipFunction(0, 1);
+
+
 #macro FunctionsPigmentRGB(RdFn, GnFn, BuFn)
 
     pigment {
         average
         pigment_map {
             [
-                function { RdFn(x, y, z) }
+                function { ClipFn(RdFn(x, y, z)) }
                 color_map {
                     [ 0 red 0 ]
                     [ 1 red 3 ]
                 }
             ]
             [
-                function { GnFn(x, y, z) }
+                function { ClipFn(GnFn(x, y, z)) }
                 color_map {
                     [ 0 green 0 ]
                     [ 1 green 3 ]
                 }
             ]
             [
-                function { BuFn(x, y, z) }
+                function { ClipFn(BuFn(x, y, z)) }
                 color_map {
                     [ 0 blue 0 ]
                     [ 1 blue 3 ]
@@ -167,28 +177,28 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
         average
         pigment_map {
             [
-                function { RdFn(x, y, z) }
+                function { ClipFn(RdFn(x, y, z)) }
                 color_map {
                     [ 0 red 0 ]
                     [ 1 red 4 ]
                 }
             ]
             [
-                function { GnFn(x, y, z) }
+                function { ClipFn(GnFn(x, y, z)) }
                 color_map {
                     [ 0 green 0 ]
                     [ 1 green 4 ]
                 }
             ]
             [
-                function { BuFn(x, y, z) }
+                function { ClipFn(BuFn(x, y, z)) }
                 color_map {
                     [ 0 blue 0 ]
                     [ 1 blue 4 ]
                 }
             ]
             [
-                function { FiFn(x, y, z) }
+                function { ClipFn(FiFn(x, y, z)) }
                 color_map {
                     [ 0 filter 0 ]
                     [ 1 filter 4 ]
@@ -206,28 +216,28 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
         average
         pigment_map {
             [
-                function { RdFn(x, y, z) }
+                function { ClipFn(RdFn(x, y, z)) }
                 color_map {
                     [ 0 red 0 ]
                     [ 1 red 4 ]
                 }
             ]
             [
-                function { GnFn(x, y, z) }
+                function { ClipFn(GnFn(x, y, z)) }
                 color_map {
                     [ 0 green 0 ]
                     [ 1 green 4 ]
                 }
             ]
             [
-                function { BuFn(x, y, z) }
+                function { ClipFn(BuFn(x, y, z)) }
                 color_map {
                     [ 0 blue 0 ]
                     [ 1 blue 4 ]
                 }
             ]
             [
-                function { TrFn(x, y, z) }
+                function { ClipFn(TrFn(x, y, z)) }
                 color_map {
                     [ 0 transmit 0 ]
                     [ 1 transmit 4 ]
@@ -245,35 +255,35 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
         average
         pigment_map {
             [
-                function { RdFn(x, y, z) }
+                function { ClipFn(RdFn(x, y, z)) }
                 color_map {
                     [ 0 red 0 ]
                     [ 1 red 5 ]
                 }
             ]
             [
-                function { GnFn(x, y, z) }
+                function { ClipFn(GnFn(x, y, z)) }
                 color_map {
                     [ 0 green 0 ]
                     [ 1 green 5 ]
                 }
             ]
             [
-                function { BuFn(x, y, z) }
+                function { ClipFn(BuFn(x, y, z)) }
                 color_map {
                     [ 0 blue 0 ]
                     [ 1 blue 5 ]
                 }
             ]
             [
-                function { FiFn(x, y, z) }
+                function { ClipFn(FiFn(x, y, z)) }
                 color_map {
                     [ 0 filter 0 ]
                     [ 1 filter 5 ]
                 }
             ]
             [
-                function { TrFn(x, y, z) }
+                function { ClipFn(TrFn(x, y, z)) }
                 color_map {
                     [ 0 transmit 0 ]
                     [ 1 transmit 5 ]
@@ -291,21 +301,21 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
         average
         pigment_map {
             [
-                function { PigmentFn(x, y, z).red }
+                function { ClipFn(PigmentFn(x, y, z).red) }
                 color_map {
                     [ 0 red 0 ]
                     [ 1 red 3 ]
                 }
             ]
             [
-                function { PigmentFn(x, y, z).green }
+                function { ClipFn(PigmentFn(x, y, z).green) }
                 color_map {
                     [ 0 green 0 ]
                     [ 1 green 3 ]
                 }
             ]
             [
-                function { PigmentFn(x, y, z).blue }
+                function { ClipFn(PigmentFn(x, y, z).blue) }
                 color_map {
                     [ 0 blue 0 ]
                     [ 1 blue 3 ]
@@ -323,28 +333,28 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
         average
         pigment_map {
             [
-                function { PigmentFn(x, y, z).red }
+                function { ClipFn(PigmentFn(x, y, z).red) }
                 color_map {
                     [ 0 red 0 ]
                     [ 1 red 4 ]
                 }
             ]
             [
-                function { PigmentFn(x, y, z).green }
+                function { ClipFn(PigmentFn(x, y, z).green) }
                 color_map {
                     [ 0 green 0 ]
                     [ 1 green 4 ]
                 }
             ]
             [
-                function { PigmentFn(x, y, z).blue }
+                function { ClipFn(PigmentFn(x, y, z).blue) }
                 color_map {
                     [ 0 blue 0 ]
                     [ 1 blue 4 ]
                 }
             ]
             [
-                function { PigmentFn(x, y, z).filter }
+                function { ClipFn(PigmentFn(x, y, z).filter) }
                 color_map {
                     [ 0 filter 0 ]
                     [ 1 filter 4 ]
@@ -362,28 +372,28 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
         average
         pigment_map {
             [
-                function { PigmentFn(x, y, z).red }
+                function { ClipFn(PigmentFn(x, y, z).red) }
                 color_map {
                     [ 0 red 0 ]
                     [ 1 red 4 ]
                 }
             ]
             [
-                function { PigmentFn(x, y, z).green }
+                function { ClipFn(PigmentFn(x, y, z).green) }
                 color_map {
                     [ 0 green 0 ]
                     [ 1 green 4 ]
                 }
             ]
             [
-                function { PigmentFn(x, y, z).blue }
+                function { ClipFn(PigmentFn(x, y, z).blue) }
                 color_map {
                     [ 0 blue 0 ]
                     [ 1 blue 4 ]
                 }
             ]
             [
-                function { PigmentFn(x, y, z).transmit }
+                function { ClipFn(PigmentFn(x, y, z).transmit) }
                 color_map {
                     [ 0 transmit 0 ]
                     [ 1 transmit 4 ]
@@ -401,35 +411,35 @@ https://en.wikipedia.org/wiki/Error_function#Approximation_with_elementary_funct
         average
         pigment_map {
             [
-                function { PigmentFn(x, y, z).red }
+                function { ClipFn(PigmentFn(x, y, z).red) }
                 color_map {
                     [ 0 red 0 ]
                     [ 1 red 5 ]
                 }
             ]
             [
-                function { PigmentFn(x, y, z).green }
+                function { ClipFn(PigmentFn(x, y, z).green) }
                 color_map {
                     [ 0 green 0 ]
                     [ 1 green 5 ]
                 }
             ]
             [
-                function { PigmentFn(x, y, z).blue }
+                function { ClipFn(PigmentFn(x, y, z).blue) }
                 color_map {
                     [ 0 blue 0 ]
                     [ 1 blue 5 ]
                 }
             ]
             [
-                function { PigmentFn(x, y, z).filter }
+                function { ClipFn(PigmentFn(x, y, z).filter) }
                 color_map {
                     [ 0 filter 0 ]
                     [ 1 filter 5 ]
                 }
             ]
             [
-                function { PigmentFn(x, y, z).transmit }
+                function { ClipFn(PigmentFn(x, y, z).transmit) }
                 color_map {
                     [ 0 transmit 0 ]
                     [ 1 transmit 5 ]
